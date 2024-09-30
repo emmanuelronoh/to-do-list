@@ -2,33 +2,33 @@
 ## To-Do List Application
 A simple and intuitive To-Do List application built with Flask, SQLAlchemy, and Flask-Login. This app allows users to manage their tasks efficiently, track their completion status, and set priorities and due dates.
 
-## Table of Contents
+# Table of Contents
+ Features
+ Technologies
+ Installation
+ Usage
+ Contributing
+ License
 # Features
+ User authentication (registration, login, logout)
+ Create, edit, and delete tasks
+ Set task priorities and due dates
+ Filter tasks by status (completed, incomplete)
+ Export tasks to a CSV file
+ View task analytics (total, completed, overdue)
 # Technologies
-# Installation
-# Usage
-# Contributing
-# License
-## Features
-# User authentication (registration, login, logout)
-# Create, edit, and delete tasks
-# Set task priorities and due dates
-# Filter tasks by status (completed, incomplete)
-# Export tasks to a CSV file
-# View task analytics (total, completed, overdue)
-## Technologies
-# Frontend: HTML, CSS (Bootstrap)
-# Backend: Flask
-# Database: SQLite
-# Authentication: Flask-Login
-ORM: SQLAlchemy
-Data Export: Pandas
-Environment Management: dotenv
-Installation
-Prerequisites
+ Frontend: HTML, CSS (Bootstrap)
+ Backend: Flask
+ Database: SQLite
+ Authentication: Flask-Login
+ ORM: SQLAlchemy
+ Data Export: Pandas
+ Environment Management: dotenv
+## Installation
+# Prerequisites
 Python 3.x
 pip (Python package installer)
-Steps
+# Steps
 Clone the repository:
 
 bash
@@ -83,13 +83,13 @@ Use the filter options to view completed or incomplete tasks.
 
 Export your tasks to a CSV file from the analytics section.
 
-Contributing
+# Contributing
 Contributions are welcome! If you have suggestions for improvements or find bugs, please open an issue or submit a pull request.
 
-Fork the repository.
+# Fork the repository.
 Create a new branch for your feature or bug fix.
 Make your changes and commit them.
 Push to the branch and create a pull request.
-License
+# License
 This project is licensed under the MIT License. See the LICENSE file for details.
 
