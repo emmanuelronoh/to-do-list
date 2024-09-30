@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit To-Do</title>
+</head>
+<body>
+    <div>
+        <h1>Edit To-Do</h1>
+        <form action="/edit/{{ todo.id }}" method="POST">
+            <input type="text" name="todo" value="{{ todo.task }}" required>
+            <input type="number" name="priority" value="{{ todo.priority }}" min="1" required>
+            <input type="date" name="due_date" value="{{ todo.due_date.strftime('%Y-%m-%d') if todo.due_date else '' }}">
+            <button type="submit">Update</button>
+        </form>
+    </div>
+</body>
+</html>

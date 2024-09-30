@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do List</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>To-Do List</h1>
+
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <ul class="alerts">
+                    {% for message in messages %}
+                        <li>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        {% endwith %}
+
+        <form action="/add" method="POST">
+            <input type="text" name="todo" placeholder="Enter a new to-do" required>
+            <input type="number" name="priority" placeholder="Priority" min="1" required>
+            <input type="date" name="due_date" placeholder="Due Date">
+            <button type="submit">Add</button>
+        </form>
+
+        <div class="search-bar">
+            <input type="text" id="search" placeholder="Search tasks...">
+        </div>
+
+        <div class="filters">
+            <label for="filter">Filter by Status:</label>
+            <select id="filter" onchange="filterTasks()">
+                <option value="all">All</option>
+                <option value="completed">Completed</option>
+                <option value="pending">Pending</option>
+            </select>
+        </div>
+
+        <ul id="todo-list">
+            {% if todos %}
+                {% for todo in todos %}
+                    <li data-status="{{ 'completed' if todo.completed else 'pending' }}">
+                        {{ todo.task }} (Priority: {{ todo.priority }})
+                        {% if todo.due_date %}
+                            - Due: {{ todo.due_date.strftime('%Y-%m-%d') }}
+                        {% endif %}
+                        <a href="/edit/{{ todo.id }}">[Edit]</a>
+                        <a href="/delete/{{ todo.id }}">[Delete]</a>
+                    </li>
+                {% endfor %}
+            {% else %}
+                <p>No to-dos yet! Add one above.</p>
+            {% endif %}
+        </ul>
+        
+        <div>
+            <a href="/logout">Logout</a>
+        </div>
+    </div>
+
+    <script>
+        // Search functionality
+        document.getElementById('search').addEventListener('keyup', function() {
+            const query = this.value.toLowerCase();
+            const items = document.querySelectorAll('#todo-list li');
+
+            items.forEach(item => {
+                const text = item.textContent.toLowerCase();
+                item.style.display = text.includes(query) ? '' : 'none';
+            });
+        });
+
+        // Filter functionality
+        function filterTasks() {
+            const filterValue = document.getElementById('filter').value;
+            const items = document.querySelectorAll('#todo-list li');
+
+            items.forEach(item => {
+                const status = item.getAttribute('data-status');
+                if (filterValue === 'all' || status === filterValue) {
+                    item.style.display = '';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        }
+    </script>
+</body>
+</html>
